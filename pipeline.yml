@@ -10,8 +10,6 @@ resources:
       username: abuzer307
       password: d4d57ff7531666b34739e9068ee50fcfb45e6a61
 
-
-
 jobs:
   - name: build-code
     plan:
