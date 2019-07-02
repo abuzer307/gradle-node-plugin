@@ -25,20 +25,16 @@ jobs:
           source: {repository: java, tag: openjdk-8}
           inputs:
             - name: application-repo
-          outputs:
-            - name: build-location
-
           run:
             path: sh
             args:
-              - -exc
-              - |
-                
-                chmod 777 application-repo/build.sh
-                chmod 777 application-repo/stats.sh
-                ./application-repo/stats.sh >> stats.txt
-                cat stats.txt
-                ./application-repo/build.sh
-                pwd
-                ls -al application-repo/build/libs
+            - -exc
+            - |
+              chmod 777 application-repo/build.sh
+              chmod 777 application-repo/stats.sh
+              ./application-repo/stats.sh >> stats.txt
+              cat stats.txt
+              ./application-repo/build.sh
+              pwd
+              ls -al application-repo/build/libs
 
