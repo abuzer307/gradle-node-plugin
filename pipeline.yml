@@ -30,8 +30,8 @@ jobs:
             - |
               chmod 777 application-repo/build.sh
               chmod 777 application-repo/stats.sh
-              ./application-repo/stats.sh >> stats.txt
-              cat stats.txt
+              ./application-repo/stats.sh
+              ls -al application-repo
               ./application-repo/build.sh
               pwd
               ls -al application-repo/build/libs
