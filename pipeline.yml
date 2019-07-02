@@ -1,0 +1,44 @@
+
+
+resources:
+  - name: application-repo
+    check_every: 1m
+    type: git
+    source:
+      uri: https://github.com/abuzer307/gradle-node-plugin
+      branch: master
+      username: abuzer307
+      password: d4d57ff7531666b34739e9068ee50fcfb45e6a61
+
+
+
+jobs:
+  - name: build-code
+    plan:
+      - get: application-repo
+        trigger: true
+      - task: build-code
+        config:
+          platform: linux
+          image_resource:
+          type: docker-image
+          source: {repository: java, tag: openjdk-8}
+          inputs:
+            - name: application-repo
+          outputs:
+            - name: build-location
+
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                
+                chmod 777 application-repo/build.sh
+                chmod 777 application-repo/stats.sh
+                ./application-repo/stats.sh >> stats.txt
+                cat stats.txt
+                ./application-repo/build.sh
+                pwd
+                ls -al application-repo/build/libs
+
